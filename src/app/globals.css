@@ -121,7 +121,7 @@
 
   /* Shadows */
   --sh-default: 6px 6px 0 #074dcf0f, -6px -6px 0 #074dcf0f;
-  --sh-alt: 6px 6px 0 #074dcf0f;
+  --sh-alt: 6px 6px 0 #d41f26;
   --sh-code: 4px 4px 0px hsla(220, 93%, 70%, 0.1);
 
   /* Colors 2 */
@@ -337,7 +337,7 @@
 
   html.dark {
     --sh-default: 5px 5px 0 #3d7df51a,-5px -5px 0 #3a7df826;
-    --sh-alt: 5px 5px 0 #3d7df514;
+    --sh-alt: 5px 5px 0 #d41f26;
     --nav-bg-color: #15171bf2
   }
 
@@ -519,7 +519,7 @@
   --color-foreground: #f6f4ef;
   --color-nav-color: #15171bf2;
   --sh-default: 5px 5px 0 #3d7df51a, -5px -5px 0 #3a7df826;
-  --sh-alt: 5px 5px 0 #3d7df514;
+  --sh-alt: 5px 5px 0 #d41f2620;
 }
 
 [data-rehype-pretty-code-title] {

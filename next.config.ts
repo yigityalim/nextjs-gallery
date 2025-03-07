@@ -1,4 +1,9 @@
 import type { NextConfig } from "next";
+import { createContentlayerPlugin } from "next-contentlayer2";
+
+const withContentlayer = createContentlayerPlugin({
+	// Additional Contentlayer config options
+});
 
 const nextConfig: NextConfig = {
 	experimental: {
@@ -6,4 +11,4 @@ const nextConfig: NextConfig = {
 	},
 };
 
-export default nextConfig;
+export default withContentlayer(nextConfig);

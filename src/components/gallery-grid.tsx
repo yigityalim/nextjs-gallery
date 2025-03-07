@@ -1,11 +1,9 @@
-"use cache";
-
-import { getPhotos } from "@/lib/image";
+import { getProducts } from "@/supabase/queries/product";
 import Image from "next/image";
 import Link from "next/link";
 
 export async function GalleryGrid() {
-	const images = await getPhotos();
+	const images = await getProducts();
 
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 lg:gap-4 xl:gap-6">
@@ -24,6 +22,7 @@ export async function GalleryGrid() {
 							className="w-full h-auto object-cover aspect-[4/3] transition-transform duration-300 hover:scale-105"
 							priority
 						/>
+						<h1>{image.name}</h1>
 					</div>
 				</Link>
 			))}
