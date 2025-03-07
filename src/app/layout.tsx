@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Lora } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { Providers } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import type React from "react";
@@ -45,6 +46,7 @@ export default function RootLayout({
 				)}
 			>
 				<Providers>
+					<Header />
 					{children}
 					{modal}
 					<Footer />

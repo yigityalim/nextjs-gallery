@@ -2,7 +2,7 @@ import { getPhotos } from "@/lib/image";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function PhotoPage({
 	params,
@@ -14,7 +14,7 @@ export default async function PhotoPage({
 	}
 
 	return (
-		<div className="container mx-auto py-10 px-4">
+		<div className="container mx-auto py-10 px-4 min-h-dvh">
 			<Link
 				href="/"
 				className="text-brand-600 dark:text-brand-300 hover:underline mb-6 inline-flex items-center justify-center gap-x-2"

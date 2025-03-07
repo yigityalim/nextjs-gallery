@@ -2,7 +2,7 @@ import { ThemeButton } from "@/components/theme-switch";
 
 export function Footer() {
 	return (
-		<footer>
+		<footer className="w-full">
 			<div className="bg-brand-600">
 				<div className="container mx-auto py-10 px-4 ">
 					<div className="w-full flex items-center justify-between mb-6">
@@ -10,7 +10,7 @@ export function Footer() {
 							Galeri
 						</h1>
 						<a
-							href="#"
+							href="/"
 							className="text-white dark:text-brand-100 hover:underline"
 						>
 							Berk Özlen

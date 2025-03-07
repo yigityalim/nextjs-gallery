@@ -12,7 +12,7 @@ export function Providers({ children }: Readonly<ProviderProps>) {
 				enableSystem
 				enableColorScheme
 				attribute="class"
-				defaultTheme="light"
+				defaultTheme="system"
 				storageKey="theme"
 				disableTransitionOnChange
 			>

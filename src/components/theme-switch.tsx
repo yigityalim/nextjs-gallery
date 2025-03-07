@@ -17,7 +17,8 @@ export function ThemeButton({ className, ...props }: Readonly<ButtonProps>) {
 	return (
 		<Button
 			onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-			className={cn("bg-blue-700", className)}
+			className={cn(className)}
+			variant="ghost"
 			{...props}
 		>
 			{theme === "light" ? "🌙" : "☀"}

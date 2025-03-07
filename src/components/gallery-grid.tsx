@@ -1,3 +1,5 @@
+"use cache";
+
 import { getPhotos } from "@/lib/image";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +22,7 @@ export async function GalleryGrid() {
 							width={400}
 							height={300}
 							className="w-full h-auto object-cover aspect-[4/3] transition-transform duration-300 hover:scale-105"
+							priority
 						/>
 					</div>
 				</Link>
