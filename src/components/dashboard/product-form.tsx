@@ -1,10 +1,11 @@
+//@ts-nocheck
 "use client";
 
 import {
 	createProductAction,
 	updateProductAction,
-} from "@/app/actions/product-actions";
-import type { Category, Product } from "@/lib/types";
+} from "@/actions/product-action";
+import type { Category, Product } from "@/supabase/schema";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

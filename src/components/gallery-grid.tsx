@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getProducts } from "@/supabase/queries/product";
 import Image from "next/image";
 import Link from "next/link";

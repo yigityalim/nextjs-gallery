@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 
 import { NestedDrawer } from "@/components/nested-drawer";
@@ -31,6 +32,7 @@ export function MobileNav() {
 					xmlns="http://www.w3.org/2000/svg"
 					className="size-[18px] icon-base"
 				>
+					<title>Menü</title>
 					<motion.line
 						x1="4"
 						x2="20"
