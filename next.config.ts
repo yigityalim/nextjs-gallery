@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
 	experimental: {
 		useCache: true,
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "placehold.co",
+			},
+		],
+	},
 };
 
 export default withContentlayer(nextConfig);

@@ -15,6 +15,7 @@ import { useConfig } from "@/lib/state";
 import { cn } from "@/lib/utils";
 import { ChevronRight, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export interface NestedDrawerProps {
@@ -23,6 +24,7 @@ export interface NestedDrawerProps {
 
 export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 	//const Icon = item.icon; -> {Icon && <Icon className="size-[14px] icon-base" />}
+	const pathname = usePathname();
 	const [isOpen, setIsOpen] = useState(false);
 	const closeAllMenus = useConfig((state) => state.closeAllMenus);
 
@@ -42,12 +44,17 @@ export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 			<DrawerTrigger asChild>
 				<div
 					key={item.name}
-					className="w-full flex items-center justify-between dark:text-offgray-50 hover:bg-offgray-100/50 dark:hover:bg-offgray-500/10 h-8 gap-3 px-2.5 text-sm tracking-tight text-nowrap text-black transition-colors duration-75 select-none cursor-pointer"
+					className={cn(
+						"w-full flex items-center justify-between rounded dark:text-offgray-50 hover:bg-offgray-100/50 dark:hover:bg-offgray-500/10 h-8 gap-3 px-2.5 text-sm tracking-tight text-nowrap text-black transition-colors duration-75 select-none cursor-pointer",
+						pathname === item.href
+							? "bg-offgray-100/50 dark:bg-offgray-500/10"
+							: "",
+					)}
 				>
 					<Link
 						onClick={handleCloseMenus}
 						href={item.href}
-						className="w-1/2 inline-flex items-center justify-start"
+						className="w-1/2 inline-flex items-center justify-start uppercase font-bold tracking-widest"
 					>
 						{item.name}
 					</Link>

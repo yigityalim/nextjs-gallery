@@ -1,6 +1,6 @@
-import { QRCodeGenerator } from "@/components/QRCodeGenerator";
 import { CategoryToc } from "@/components/category-toc";
 import { Mdx } from "@/components/mdx-components";
+import { QrcodeGenerator } from "@/components/qrcode-generator";
 import { allPosts } from "contentlayer/generated";
 import * as React from "react";
 
@@ -21,7 +21,7 @@ export default async function CategoryIdPage({
 		<div className="max-w-(--content-width) mx-auto">
 			<CategoryToc category={category} />
 			<div className="px-4 pt-4">
-				<QRCodeGenerator />
+				<QrcodeGenerator />
 				<Mdx code={category.body.code} />
 			</div>
 		</div>

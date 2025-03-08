@@ -230,7 +230,7 @@ export const components = {
 	}: React.HTMLAttributes<HTMLTableSectionElement>) => (
 		<thead
 			className={cn(
-				"dark:text-gray-200 border-y default-border-color dark:bg-offgray-800/10 dark:border-offgray-300/20",
+				"dark:text-gray-200 border-y bg-offgray-200 dark:bg-brand-500/20 dark:border-offgray-300/20",
 				className,
 			)}
 			{...props}
@@ -251,6 +251,21 @@ export const components = {
 				"px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right not-last:border-r grid-border-color last:border-none!",
 				className,
 			)}
+			{...props}
+		/>
+	),
+	pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+		<pre
+			className={cn(
+				"p-4 bg-offgray-100 dark:bg-brand-900/30 overflow-x-auto",
+				className,
+			)}
+			{...props}
+		/>
+	),
+	code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+		<code
+			className={cn("font-mono text-xs p-0.5 overflow-x-auto", className)}
 			{...props}
 		/>
 	),

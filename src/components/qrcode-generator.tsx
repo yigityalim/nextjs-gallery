@@ -1,5 +1,6 @@
 "use client";
 
+import { Modal } from "@/components/modal";
 import { Button } from "@/components/ui/button";
 import {
 	Drawer,
@@ -15,12 +16,11 @@ import { Download, Share } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { QRCodeSVG } from "qrcode.react";
 import React, { useRef } from "react";
+import { toast } from "sonner";
 import { create } from "zustand";
 
 export type QRDrawerStore = {
 	isOpen: boolean;
-	url: string;
-	setUrl: (url: string) => void;
 	openDrawer: () => void;
 	closeDrawer: () => void;
 	toggleDrawer: () => void;
@@ -28,24 +28,21 @@ export type QRDrawerStore = {
 
 export const useQRDrawerStore = create<QRDrawerStore>()((set) => ({
 	isOpen: false,
-	url: "https://example.com",
-	setUrl: (url) => set({ url }),
 	openDrawer: () => set({ isOpen: true }),
 	closeDrawer: () => set({ isOpen: false }),
 	toggleDrawer: () => set((state) => ({ isOpen: !state.isOpen })),
 }));
 
-export function QRCodeGenerator() {
-	const { isOpen, url, setUrl, openDrawer, closeDrawer } = useQRDrawerStore();
+export function QrcodeGenerator() {
 	const qrContainerRef = useRef<HTMLDivElement>(null);
 	const pathname = usePathname();
 	const params = useSearchParams();
 
+	const url = `http://localhost:3000${pathname}${params.toString()}`;
+
 	const handleDownloadDirect = () => {
 		const svgElement = qrContainerRef.current?.querySelector("svg");
 		if (!svgElement) return;
-
-		setUrl(`http://localhost:3000${pathname}${params.toString()}`);
 
 		const svgData = new XMLSerializer().serializeToString(svgElement);
 		const svgBlob = new Blob([svgData], {
@@ -85,13 +82,25 @@ export function QRCodeGenerator() {
 		};
 
 		img.src = svgUrl;
+
+		const promise = new Promise<{ name: string }>((resolve) => {
+			setTimeout(() => {
+				resolve({ name: "QR Kod" });
+			}, 1000);
+		});
+
+		toast.promise(promise, {
+			loading: "İndiriliyor...",
+			success: (data: { name: string }) => `${data.name} indirildi.`,
+			error: "İndirme hatası",
+		});
 	};
 
 	const handleShare = async () => {
 		if (!navigator.share) {
 			if (navigator.clipboard) {
 				await navigator.clipboard.writeText(url);
-				alert("URL kopyalandı!");
+				toast("QR kodu kopyalandı.");
 			}
 			return;
 		}
@@ -108,23 +117,24 @@ export function QRCodeGenerator() {
 	};
 
 	return (
-		<Drawer
-			open={isOpen}
-			onOpenChange={(open) => (open ? openDrawer() : closeDrawer())}
-		>
-			<DrawerTrigger asChild>
+		<Modal
+			open={useQRDrawerStore((state) => state.isOpen)}
+			setOpen={useQRDrawerStore((state) => state.toggleDrawer)}
+			trigger={
 				<Button size="icon">
-					<Share className="h-4 w-4" />
+					<Share className="size-4" />
 				</Button>
-			</DrawerTrigger>
-			<DrawerContent>
-				<DrawerHeader>
-					<DrawerTitle>QR Kod Üreteci</DrawerTitle>
-					<DrawerDescription className="sr-only">
-						QR kodunuzu oluşturun.
-					</DrawerDescription>
-				</DrawerHeader>
-
+			}
+			header={(Title, Description) => (
+				<>
+					<Title>QR Kodu Oluşturucu</Title>
+					<Description className="sr-only">
+						Bu modül ile QR kodu oluşturabilirsiniz. QR kodu indirme ve paylaşma
+						seçenekleri mevcuttur.
+					</Description>
+				</>
+			)}
+			content={
 				<div className="p-4">
 					<div
 						ref={qrContainerRef}
@@ -138,7 +148,10 @@ export function QRCodeGenerator() {
 							fgColor={"#000000"}
 						/>
 					</div>
-
+					<p className="text-sm text-gray-500 text-center my-4">
+						QR Kodu indirmek için "İndir" butonunu kullanın veya "Paylaş"
+						butonunu kullanarak oluşturulan QR Kodu paylaşın.
+					</p>
 					<div className="flex justify-center gap-4 mt-4">
 						<Button
 							onClick={handleDownloadDirect}
@@ -154,17 +167,8 @@ export function QRCodeGenerator() {
 						</Button>
 					</div>
 				</div>
-
-				<DrawerFooter>
-					<p className="text-sm text-gray-500 text-center mb-4">
-						QR Kodu indirmek için İndir butonunu kullanın veya Paylaş butonunu
-						kullanarak oluşturulan qr kodu paylaşabilirsiniz.
-					</p>
-					<DrawerClose asChild>
-						<Button>Kapat</Button>
-					</DrawerClose>
-				</DrawerFooter>
-			</DrawerContent>
-		</Drawer>
+			}
+			close="Kapat"
+		/>
 	);
 }

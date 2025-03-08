@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { ReactScan } from "@/components/react-scan";
 import { Providers } from "@/components/theme-provider";
 import { ScrollTopButton } from "@/components/top-button";
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import type React from "react";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
 					{modal}
 					<Footer />
 					<ScrollTopButton />
+					<Toaster />
 				</Providers>
 			</body>
 		</html>
