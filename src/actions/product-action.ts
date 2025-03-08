@@ -12,7 +12,6 @@ import {
 import { productSchema } from "@/supabase/schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 export async function createProductAction(
 	prevState: unknown,

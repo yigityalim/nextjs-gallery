@@ -100,6 +100,7 @@ var defaultFields = {
   date: { type: "date", required: true },
   authors: { type: "list", of: AuthorsProperties, required: true },
   categories: { type: "list", of: { type: "string" } },
+  cover: { type: "string" },
   published: {
     type: "boolean",
     default: true
@@ -141,4 +142,4 @@ export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-ITEMWBRQ.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-I65NJLX3.mjs.map

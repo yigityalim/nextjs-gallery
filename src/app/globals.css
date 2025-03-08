@@ -54,7 +54,7 @@
 
 
 @theme {
-  --blog-content-width: 820px;
+  --content-width: 820px;
   --header-height: 57px;
 
   /* Fonts */
@@ -145,6 +145,8 @@
   --animate-spin-slow: spin 32s linear infinite;
   --animate-slideDown: slideDown .3s ease;
   --animate-slideUp: slideUp .3s ease;
+  --animate-blurOpen: blurOpen .3s ease;
+  --animate-blurClose: blurClose .3s ease;
 }
 
 
@@ -210,7 +212,7 @@
 
 
   .icon-base {
-    @apply text-brand-600 dark:text-brand-300 size-[14px] shrink-0
+    @apply text-brand-500 size-[14px] shrink-0
   }
 
   .sh-default {
@@ -671,12 +673,10 @@ input:focus-visible, button:focus-visible {
   from {
     height: 0;
     opacity: 0;
-    backdrop-filter: blur(4px);
   }
   to {
     height: var(--radix-accordion-content-height);
     opacity: 1;
-    backdrop-filter: blur(0);
   }
 }
 
@@ -684,12 +684,28 @@ input:focus-visible, button:focus-visible {
   from {
     height: var(--radix-accordion-content-height);
     opacity: 1;
-    backdrop-filter: blur(0);
   }
   to {
     height: 0;
     opacity: 0;
+  }
+}
+
+@keyframes blurOpen {
+  0% {
+    backdrop-filter: blur(0);
+  }
+  to {
     backdrop-filter: blur(4px);
+  }
+}
+
+@keyframes blurClose {
+  0% {
+    backdrop-filter: blur(4px);
+  }
+  to {
+    backdrop-filter: blur(0);
   }
 }
 

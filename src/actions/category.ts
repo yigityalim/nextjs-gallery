@@ -8,7 +8,6 @@ import {
 import { categorySchema } from "@/supabase/schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 export async function createCategoryAction(
 	prevState: unknown,

@@ -18,6 +18,7 @@ export type Post = {
   date: IsoDateTimeString
   authors: AuthorsProperties[]
   categories?: string[] | undefined
+  cover?: string | undefined
   published: boolean
   toc: boolean
   /** MDX file body */
