@@ -73,7 +73,7 @@ export function MobileNav() {
 			</DrawerTrigger>
 			<DrawerContent>
 				<DrawerHeader className="flex flex-col gap-2">
-					<DrawerTitle className="">
+					<DrawerTitle className="pt-4">
 						<Link href="/">
 							<Image
 								src="/brand-logo.png"

@@ -55,11 +55,10 @@
 
 @theme {
   --content-width: 820px;
-  --header-height: 57px;
+  --header-height: 100px;
 
   /* Fonts */
   --font-lora: var(--font-lora);
-  --font-writer: var(--font-writer);
 
   /* Colors */
 
@@ -121,7 +120,7 @@
 
   /* Shadows */
   --sh-default: 6px 6px 0 #074dcf0f, -6px -6px 0 #074dcf0f;
-  --sh-alt: 6px 6px 0 #d41f26;
+  --sh-alt: 6px 6px 0 #d41f2630;
   --sh-code: 4px 4px 0px hsla(220, 93%, 70%, 0.1);
 
   /* Colors 2 */
@@ -327,8 +326,6 @@
   }
 
   html.light {
-    --sh-default: 6px 6px 0 #074dcf0f,-6px -6px 0 #074dcf0f;
-    --sh-alt: 6px 6px 0 #074dcf0f;
     --nav-bg-color: #f7f7f2f5
   }
 
@@ -347,17 +344,8 @@
     color: var(--shiki-dark);
   }
 
-  pre>code {
-    white-space: pre!important;
-    background: 0 0!important
-  }
-
-  code span[data-highlighted-line] {
-    @apply pl-1 -ml-2 border-l-2 border-brand-600 dark:border-brand-400 bg-brand-200! dark:bg-blue-800/20!
-  }
-
-  code mark[data-highlighted-chars] span {
-    @apply bg-yellow-200 dark:bg-yellow-400 text-black!
+  html {
+    scroll-padding-top: calc(var(--header-height) - 50px);
   }
 
   ::selection {

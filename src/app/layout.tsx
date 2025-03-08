@@ -3,7 +3,9 @@ import { Lora } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { ReactScan } from "@/components/react-scan";
 import { Providers } from "@/components/theme-provider";
+import { ScrollTopButton } from "@/components/top-button";
 import { cn } from "@/lib/utils";
 import type React from "react";
 
@@ -38,6 +40,7 @@ export default function RootLayout({
 >) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<ReactScan />
 			<body
 				suppressHydrationWarning
 				className={cn(
@@ -47,9 +50,11 @@ export default function RootLayout({
 			>
 				<Providers>
 					<Header />
+					<div className="h-(--header-height)" />
 					{children}
 					{modal}
 					<Footer />
+					<ScrollTopButton />
 				</Providers>
 			</body>
 		</html>

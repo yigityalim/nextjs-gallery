@@ -2,7 +2,6 @@
 
 import type { TableOfContents as TOC } from "@/lib/toc";
 import { cn } from "@/lib/utils";
-import { BookOpen } from "lucide-react";
 import * as React from "react";
 import { useCallback } from "react";
 
@@ -112,7 +111,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
 					<li key={`${index}-${item.url.split("#")[1]}`}>
 						<a
 							href={item.url}
-							onClick={(e) => {
+							onClick={async (e) => {
 								e.preventDefault();
 								scroll(item.url.split("#")[1]);
 							}}

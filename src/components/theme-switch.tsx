@@ -1,11 +1,12 @@
 "use client";
 
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
+import type { SwitchProps } from "@radix-ui/react-switch";
 import { useTheme } from "next-themes";
 import React from "react";
 
-export function ThemeButton({ className, ...props }: Readonly<ButtonProps>) {
+export function ThemeButton({ className, ...props }: Readonly<SwitchProps>) {
 	const [mounted, setMounted] = React.useState(false);
 
 	React.useEffect(() => setMounted(true), []);
@@ -15,12 +16,14 @@ export function ThemeButton({ className, ...props }: Readonly<ButtonProps>) {
 	if (!mounted) return null;
 
 	return (
-		<Button
-			onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-			className={cn(className)}
-			{...props}
-		>
-			{`${theme === "light" ? "Koyu" : "Açık"} Mod`}
-		</Button>
+		<div className={cn("flex items-center justify-center gap-x-2", className)}>
+			<span className="text-sm font-medium">Tema</span>
+			<Switch
+				checked={theme === "dark"}
+				onCheckedChange={() => {
+					setTheme(theme === "dark" ? "light" : "dark");
+				}}
+			/>
+		</div>
 	);
 }

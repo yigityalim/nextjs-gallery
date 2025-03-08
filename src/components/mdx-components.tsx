@@ -27,26 +27,28 @@ export const components = {
 		}
 
 		return (
-			<h1
-				className={cn(
-					"font-lora text-pretty scroll-mt-24 h1 text-brand-600 dark:text-brand-300 font-medium mt-8 mb-4 group flex whitespace-pre-wrap",
-					className,
-				)}
-				id={slugifiedId}
-			>
-				<Link
-					href={`#${slugifiedId}`}
-					className="relative border-none lg:-ml-2 lg:pl-2 flex items-center"
-					aria-label="Anchor"
+			<div className="mb-4">
+				<h1
+					className={cn(
+						"font-lora text-pretty scroll-mt-24 scroll-pt-24 h1 text-brand-600 dark:text-brand-300 font-medium mt-8 group flex whitespace-pre-wrap",
+						className,
+					)}
+					id={slugifiedId}
 				>
-					<span className="absolute -ml-7 opacity-0 group-hover:opacity-100 hidden lg:flex size-5 items-center justify-center rounded-sm text-brand-600 dark:text-brand-300 shadow-xs border border-offgray-200/60 dark:border-offgray-600/20 dark:bg-offgray-900/30">
-						<Hash />
-					</span>
-					<span className="inline-flex items-center [&>code]:text-[clamp(1.5rem,_1.2rem_+_1vw,_1.7rem)] [&>code]:[line-height:_1.25]">
-						{text}
-					</span>
-				</Link>
-			</h1>
+					<Link
+						href={`#${slugifiedId}`}
+						className="relative border-none lg:-ml-2 lg:pl-2 flex items-center"
+						aria-label="Anchor"
+					>
+						<span className="absolute -ml-7 opacity-0 group-hover:opacity-100 hidden lg:flex size-5 items-center justify-center rounded-sm text-brand-600 dark:text-brand-300 shadow-xs border border-offgray-200/60 dark:border-offgray-600/20 dark:bg-offgray-900/30">
+							<Hash />
+						</span>
+						<span className="inline-flex items-center [&>code]:text-[clamp(1.5rem,_1.2rem_+_1vw,_1.7rem)] [&>code]:[line-height:_1.25]">
+							{text}
+						</span>
+					</Link>
+				</h1>
+			</div>
 		);
 	},
 	h2: ({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -67,7 +69,7 @@ export const components = {
 		return (
 			<h2
 				className={cn(
-					"font-lora text-pretty scroll-mt-24 h2 text-brand-600 dark:text-brand-300 font-medium mt-8 mb-4 group flex whitespace-pre-wrap",
+					"font-lora text-pretty scroll-mt-24 scroll-pt-24 h2 text-brand-600 dark:text-brand-300 font-medium mt-8 mb-4 group flex whitespace-pre-wrap",
 					className,
 				)}
 				id={slugifiedId}
@@ -106,7 +108,7 @@ export const components = {
 		return (
 			<h3
 				className={cn(
-					"cursor-pointer font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight border-b grid-border-color mb-2 pb-1.5 [&>code]:text-xl [&>code]:line-height-1.25 hover:text-brand-600 dark:hover:text-brand-300",
+					"cursor-pointer font-heading mt-8 scroll-m-20 scroll-pt-20 text-xl font-semibold tracking-tight border-b grid-border-color mb-2 pb-1.5 [&>code]:text-xl [&>code]:line-height-1.25 hover:text-brand-600 dark:hover:text-brand-300",
 					className,
 				)}
 				{...props}
@@ -124,7 +126,7 @@ export const components = {
 	h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h4
 			className={cn(
-				"font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
+				"font-heading mt-8 scroll-m-20 scroll-pt-20 text-lg font-semibold tracking-tight",
 				className,
 			)}
 			{...props}
@@ -133,7 +135,7 @@ export const components = {
 	h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h5
 			className={cn(
-				"mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
+				"mt-8 scroll-m-20 scroll-pt-20 text-lg font-semibold tracking-tight",
 				className,
 			)}
 			{...props}
@@ -142,7 +144,7 @@ export const components = {
 	h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h6
 			className={cn(
-				"mt-8 scroll-m-20 text-base font-semibold tracking-tight",
+				"mt-8 scroll-m-20 scroll-pt-20 text-base font-semibold tracking-tight",
 				className,
 			)}
 			{...props}
@@ -327,34 +329,29 @@ export const components = {
 		};
 
 		return (
-			<div className="w-full border default-border-color rounded-sm p-2.5 bg-white/60 dark:bg-offgray-800/8 sh-alt relative overflow-clip p-0! mb-4">
-				<figure>
-					<NextImage
-						src={
-							getImageSrc(true, resolvedTheme === "dark") || "/placeholder.svg"
-						}
-						alt={alt || ""}
-						width={props.width ?? 800}
-						height={props.height ?? 450}
-						quality={100}
-						priority
-						className="block md:hidden"
-					/>
-					<NextImage
-						src={
-							getImageSrc(false, resolvedTheme === "dark") || "/placeholder.svg"
-						}
-						alt={alt || ""}
-						width={props.width ?? 800}
-						height={props.height ?? 450}
-						quality={100}
-						priority
-						className="hidden md:block"
-					/>
-					<figcaption className="px-3 py-2.5 text-xs italic dark:text-gray-200 border-t border-borderAccent dark:bg-offgray-800/10 dark:border-offgray-300/20 text-offgray">
-						{alt}
-					</figcaption>
-				</figure>
+			<div className="w-full rounded-sm p-2.5 relative overflow-clip p-0! mb-4">
+				<NextImage
+					src={
+						getImageSrc(true, resolvedTheme === "dark") || "/placeholder.svg"
+					}
+					alt={alt || ""}
+					width={props.width ?? 800}
+					height={props.height ?? 450}
+					quality={100}
+					priority
+					className="block md:hidden"
+				/>
+				<NextImage
+					src={
+						getImageSrc(false, resolvedTheme === "dark") || "/placeholder.svg"
+					}
+					alt={alt || ""}
+					width={props.width ?? 800}
+					height={props.height ?? 450}
+					quality={100}
+					priority
+					className="hidden md:block"
+				/>
 			</div>
 		);
 	},

@@ -10,7 +10,7 @@ import {
 	DrawerTitle,
 	DrawerTrigger,
 } from "@/components/ui/drawer";
-import type { MenuItem } from "@/lib/menu";
+import type { Menu } from "@/lib/menu";
 import { useConfig } from "@/lib/state";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
@@ -18,7 +18,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export interface NestedDrawerProps {
-	item: MenuItem;
+	item: Menu;
 }
 
 export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
@@ -30,6 +30,8 @@ export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 		setIsOpen(false);
 		closeAllMenus();
 	};
+
+	console.log(item);
 
 	return (
 		<DrawerNested

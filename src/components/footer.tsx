@@ -1,20 +1,13 @@
 import { ThemeButton } from "@/components/theme-switch";
+import Image from "next/image";
 
 export function Footer() {
 	return (
 		<footer className="w-full">
 			<div className="bg-brand-600">
 				<div className="container mx-auto py-10 px-4 ">
-					<div className="w-full flex items-center justify-between mb-6">
-						<h1 className="text-3xl font-bold font-lora text-white dark:text-brand-100">
-							Galeri
-						</h1>
-						<a
-							href="/"
-							className="text-white dark:text-brand-100 hover:underline"
-						>
-							Berk Özlen
-						</a>
+					<div className="w-full flex items-center justify-center mb-6">
+						<Image src="/brand-logo.png" alt="Logo" width={100} height={100} />
 					</div>
 					<ThemeButton />
 				</div>
