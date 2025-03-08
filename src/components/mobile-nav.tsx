@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/drawer";
 import { menu } from "@/lib/menu";
 import { useConfig } from "@/lib/state";
+import { X } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -106,7 +107,9 @@ export function MobileNav() {
 				</DrawerHeader>
 				<DrawerFooter>
 					<ThemeButton />
-					<DrawerClose>Menüyü kapat</DrawerClose>
+					<DrawerClose>
+						<X className="size-[14px] text-offgray-800 dark:text-offgray-300" />
+					</DrawerClose>
 				</DrawerFooter>
 			</DrawerContent>
 		</Drawer>

@@ -13,7 +13,7 @@ import {
 import type { Menu } from "@/lib/menu";
 import { useConfig } from "@/lib/state";
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -60,7 +60,7 @@ export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 					</button>
 				</div>
 			</DrawerTrigger>
-			<DrawerContent z={204}>
+			<DrawerContent z={204} className="max-h-[60%] overflow-y-auto">
 				<DrawerHeader className={cn("border-0", item.name ? "" : "p-0")}>
 					<DrawerTitle className="text-lg font-bold text-offgray-600 dark:text-offgray-200">
 						{item.name}
@@ -80,7 +80,9 @@ export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 					))}
 				</nav>
 				<DrawerFooter>
-					<DrawerClose>Alt Menüyü Kapat</DrawerClose>
+					<DrawerClose>
+						<X className="size-[14px] text-offgray-800 dark:text-offgray-300" />
+					</DrawerClose>
 				</DrawerFooter>
 			</DrawerContent>
 		</DrawerNested>
