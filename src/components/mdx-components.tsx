@@ -10,16 +10,45 @@ import React from "react";
 import slugify from "slugify";
 
 export const components = {
-	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-		<h1
-			id={props.id}
-			className={cn(
-				"font-heading mt-2 mb-4 scroll-m-20 text-3xl font-bold tracking-tight text-brand-600 dark:text-brand-300",
-				className,
-			)}
-			{...props}
-		/>
-	),
+	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+		const text = React.Children.toArray(props.children)
+			.filter((child) => typeof child === "string") // Sadece stringleri al
+			.join("")
+			.trim();
+
+		const slugifiedId = slugify(text, {
+			lower: true,
+			strict: true,
+			remove: /[*+~.()'"!:@]/g,
+		});
+
+		if (!text) {
+			return null;
+		}
+
+		return (
+			<h1
+				className={cn(
+					"font-lora text-pretty scroll-mt-24 h1 text-brand-600 dark:text-brand-300 font-medium mt-8 mb-4 group flex whitespace-pre-wrap",
+					className,
+				)}
+				id={slugifiedId}
+			>
+				<Link
+					href={`#${slugifiedId}`}
+					className="relative border-none lg:-ml-2 lg:pl-2 flex items-center"
+					aria-label="Anchor"
+				>
+					<span className="absolute -ml-7 opacity-0 group-hover:opacity-100 hidden lg:flex size-5 items-center justify-center rounded-sm text-brand-600 dark:text-brand-300 shadow-xs border border-offgray-200/60 dark:border-offgray-600/20 dark:bg-offgray-900/30">
+						<Hash />
+					</span>
+					<span className="inline-flex items-center [&>code]:text-[clamp(1.5rem,_1.2rem_+_1vw,_1.7rem)] [&>code]:[line-height:_1.25]">
+						{text}
+					</span>
+				</Link>
+			</h1>
+		);
+	},
 	h2: ({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) => {
 		const text = React.Children.toArray(children)
 			.filter((child) => typeof child === "string") // Sadece stringleri al

@@ -53,6 +53,7 @@ const defaultFields = {
 	date: { type: "date", required: true },
 	authors: { type: "list", of: AuthorsProperties, required: true },
 	categories: { type: "list", of: { type: "string" } },
+	cover: { type: "string" },
 	published: {
 		type: "boolean",
 		default: true,
