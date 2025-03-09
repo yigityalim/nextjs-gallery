@@ -9,27 +9,27 @@ import Image from "next/image";
 export const links = [
 	{
 		name: "facebook",
-		href: "https://www.facebook.com/atudutyfree",
+		href: "https://www.facebook.com/",
 		icon: SiFacebook,
 	},
 	{
 		name: "twitter",
-		href: "https://twitter.com/atudutyfree",
+		href: "https://twitter.com/",
 		icon: SiX,
 	},
 	{
 		name: "youtube",
-		href: "https://www.youtube.com/user/atudutyfree",
+		href: "https://www.youtube.com/user/",
 		icon: SiYoutube,
 	},
 	{
 		name: "instagram",
-		href: "https://www.instagram.com/atudutyfree",
+		href: "https://www.instagram.com/",
 		icon: SiInstagram,
 	},
 	{
 		name: "linkedin",
-		href: "https://www.linkedin.com/company/atudutyfree",
+		href: "https://www.linkedin.com/",
 		// TODO: Linkedin ikonu değiştir. ortalı durmuyor
 		icon: () => (
 			<svg
@@ -62,7 +62,7 @@ export function Footer() {
 							href="tel:+902124654327"
 							className="text-center text-white dark:text-offwhite text-xs"
 						>
-							+90 212 465 43 27
+							+90 212 212 12 12
 						</a>
 					</div>
 					<div className="w-full flex flex-col gap-4 items-start justify-center mb-6">
@@ -70,9 +70,8 @@ export function Footer() {
 							Adres
 						</h5>
 						<p className="text-start text-white dark:text-offwhite text-xs leading-relaxed">
-							Ayazaga Mahallesi, Cendere Caddesi, <br />
-							No. 109 L 2C Blok 2 ve 7. Kat <br />
-							34485 Sarıyer / İstanbul - Turkey
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. At
+							molestiae optio pariatur quae quasi qui!
 						</p>
 					</div>
 					<div className="w-full flex flex-col gap-4 items-start justify-center mb-6">
@@ -96,8 +95,8 @@ export function Footer() {
 					<div className="w-full flex flex-col gap-4 items-start justify-center mt-6">
 						<p className="text-start text-white dark:text-offwhite text-xs">
 							Copyright &copy; {new Date().getFullYear()}{" "}
-							<a href="https://www.atu.com.tr" className="text-brand-500">
-								ATU
+							<a href="https://www.acme.com" className="text-brand-500">
+								ACME
 							</a>{" "}
 							Tüm Hakları Saklıdır.
 						</p>
