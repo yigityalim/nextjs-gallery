@@ -18,5 +18,5 @@ export function getBaseUrl() {
 		return `https://${process.env.VERCEL_URL}`;
 	}
 
-	throw new Error("Base URL could not be determined");
+	return "https://nextjs-gallery-neon.vercel.app/";
 }
