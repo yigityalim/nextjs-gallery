@@ -3,6 +3,7 @@ import { Mdx } from "@/components/mdx-components";
 import { QrcodeGenerator } from "@/components/qrcode-generator";
 import { allPosts } from "contentlayer/generated";
 import * as React from "react";
+import { Suspense } from "react";
 
 export function generateStaticParams() {
 	return allPosts.map((post) => ({
@@ -25,7 +26,9 @@ export default async function CategoryIdPage({
 		<div className="max-w-(--content-width) mx-auto">
 			<CategoryToc category={category} />
 			<div className="px-4 pt-4">
-				<QrcodeGenerator />
+				<Suspense fallback={<div>Loading...</div>}>
+					<QrcodeGenerator />
+				</Suspense>
 				<Mdx code={category.body.code} />
 			</div>
 		</div>
