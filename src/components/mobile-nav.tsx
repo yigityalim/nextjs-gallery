@@ -78,7 +78,7 @@ export function MobileNav() {
 						<Link href="/">
 							<Image
 								src="/brand-logo.png"
-								alt="atu-duty-free"
+								alt="brand-logo"
 								width={100}
 								height={100}
 								priority
