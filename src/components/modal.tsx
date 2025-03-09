@@ -59,10 +59,14 @@ export function Modal({
 	if (!mounted)
 		return (
 			<Button
-				className="w-fit inline-flex items-center justify-center"
-				size="icon"
+				className="w-full md:w-fit inline-flex items-center justify-center"
+				size="sm"
+				disabled
 			>
 				<Spinner />
+				<span className="md:inline-flex items-center justify-start">
+					Bu sayfanın QR Kodunu oluşturun
+				</span>
 			</Button>
 		);
 

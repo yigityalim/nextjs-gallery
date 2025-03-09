@@ -4,8 +4,8 @@ import { Modal } from "@/components/modal";
 import { Button } from "@/components/ui/button";
 import { getBaseUrl } from "@/lib/utils";
 import { Download, Share } from "lucide-react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { QRCodeSVG } from "qrcode.react";
+import { usePathname } from "next/navigation";
+import { QRCodeCanvas } from "qrcode.react";
 import React, { useRef } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
@@ -111,8 +111,11 @@ export function QrcodeGenerator() {
 			open={useQRDrawerStore((state) => state.isOpen)}
 			setOpen={useQRDrawerStore((state) => state.toggleDrawer)}
 			trigger={
-				<Button size="icon">
-					<Share className="size-4" />
+				<Button size="sm">
+					<Share className="size-[16px]" />
+					<span className="md:inline-flex items-center justify-start">
+						Bu sayfanın QR Kodunu oluşturun
+					</span>
 				</Button>
 			}
 			header={(Title, Description) => (
@@ -131,7 +134,7 @@ export function QrcodeGenerator() {
 						data-qr-container
 						className="relative flex flex-col items-center justify-center bg-white rounded-lg aspect-square"
 					>
-						<QRCodeSVG
+						<QRCodeCanvas
 							value={url}
 							size={256}
 							bgColor={"#ffffff"}
