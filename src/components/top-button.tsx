@@ -9,7 +9,7 @@ export function ScrollTopButton() {
 	const [visible, setVisible] = useState(false);
 
 	scrollYProgress.on("change", (v) => {
-		setVisible(v > 0.25);
+		setVisible(v > 0.1);
 	});
 
 	return (

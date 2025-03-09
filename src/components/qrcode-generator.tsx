@@ -12,6 +12,7 @@ import {
 	DrawerTitle,
 	DrawerTrigger,
 } from "@/components/ui/drawer";
+import { getBaseUrl } from "@/lib/utils";
 import { Download, Share } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { QRCodeSVG } from "qrcode.react";
@@ -38,7 +39,7 @@ export function QrcodeGenerator() {
 	const pathname = usePathname();
 	const params = useSearchParams();
 
-	const url = `http://localhost:3000${pathname}${params.toString()}`;
+	const url = `${getBaseUrl()}${pathname}${params.toString()}`;
 
 	const handleDownloadDirect = () => {
 		const svgElement = qrContainerRef.current?.querySelector("svg");
@@ -139,8 +140,11 @@ export function QrcodeGenerator() {
 					<div
 						ref={qrContainerRef}
 						data-qr-container
-						className="flex flex-col items-center justify-center bg-white rounded-lg aspect-square"
+						className="relative flex flex-col items-center justify-center bg-white rounded-lg aspect-square"
 					>
+						<span className="absolute top-0 inset-x-0 inline-flex items-center justify-center p-2 bg-white rounded-t-lg">
+							{url}
+						</span>
 						<QRCodeSVG
 							value={url}
 							size={256}

@@ -30,7 +30,7 @@ export const components = {
 			<div className="mb-4">
 				<h1
 					className={cn(
-						"font-lora text-pretty scroll-mt-24 scroll-pt-24 h1 text-brand-600 dark:text-brand-300 font-medium mt-8 group flex whitespace-pre-wrap",
+						"font-lora text-pretty scroll-mt-24 scroll-pt-24 h1 text-brand-600 dark:text-brand-500 font-medium mt-8 group flex whitespace-pre-wrap",
 						className,
 					)}
 					id={slugifiedId}
@@ -69,7 +69,7 @@ export const components = {
 		return (
 			<h2
 				className={cn(
-					"font-lora text-pretty scroll-mt-24 scroll-pt-24 h2 text-brand-600 dark:text-brand-300 font-medium mt-8 mb-4 group flex whitespace-pre-wrap",
+					"font-lora text-pretty scroll-mt-24 scroll-pt-24 h2 text-brand-600 dark:text-brand-500 font-medium mt-8 mb-4 group flex whitespace-pre-wrap",
 					className,
 				)}
 				id={slugifiedId}
@@ -82,9 +82,7 @@ export const components = {
 					<span className="absolute -ml-7 opacity-0 group-hover:opacity-100 hidden lg:flex size-5 items-center justify-center rounded-sm text-brand-600 dark:text-brand-300 shadow-xs border border-offgray-200/60 dark:border-offgray-600/20 dark:bg-offgray-900/30">
 						<Hash />
 					</span>
-					<span className="inline-flex items-center [&>code]:text-[clamp(1.5rem,_1.2rem_+_1vw,_1.7rem)] [&>code]:[line-height:_1.25]">
-						{text}
-					</span>
+					<span className="inline-flex items-center">{text}</span>
 				</Link>
 			</h2>
 		);
@@ -296,10 +294,8 @@ export const components = {
 		const baseName = src.substring(0, src.lastIndexOf("."));
 
 		const variants = {
-			mobileDark: `${baseName}-mobile-dark.${extension}`,
-			mobileLight: `${baseName}-mobile-light.${extension}`,
-			desktopDark: `${baseName}-desktop-dark.${extension}`,
-			desktopLight: `${baseName}-desktop-light.${extension}`,
+			mobileDark: `${baseName}-dark.${extension}`,
+			mobileLight: `${baseName}-light.${extension}`,
 		};
 
 		// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>

@@ -14,93 +14,76 @@ export interface TocItem {
 	items?: TocItem[];
 }
 
-function formatTocItems(items: TocItem[], rootHref = ""): Menu[] {
+function formatTocItems(
+	items: TocItem[] | undefined,
+	rootHref = "",
+	prefix = "",
+): Menu[] {
+	if (!items) return [];
+
 	return items.map((item, index) => {
 		const result: Menu = {
-			id: `visky-${index + 1}`,
+			id: `${prefix}-${index + 1}`,
 			name: item.title,
 			description: item.title,
 			href: `${rootHref}${item.url}`,
 		};
 
 		if (item.items && item.items.length > 0) {
-			result.children = formatTocItems(item.items);
+			result.children = formatTocItems(
+				item.items,
+				"",
+				`${prefix}-${index + 1}`,
+			);
 		}
 
 		return result;
 	});
 }
 
+function findPostByTitle(titlePart: string) {
+	return allPosts.find((post) =>
+		post.title.toLowerCase().includes(titlePart.toLowerCase()),
+	);
+}
+
+const viskiPost = findPostByTitle("Viski");
+const sarapPost = findPostByTitle("Şarap");
+const vodkaPost = findPostByTitle("Vodka");
+
 export const menu = [
 	{
 		id: crypto.randomUUID(),
 		name: "Viskiler",
-		description: "Viski çeşitleri",
-		href: "/category/visky",
+		description: "Viski çeşitleri ve tarihi",
+		href: "/posts/visky",
 		children: formatTocItems(
-			allPosts[0]?.tableOfContents?.items[0]?.items || [],
-			"/category/visky",
+			viskiPost?.tableOfContents?.items[0]?.items || [],
+			"/posts/visky",
+			"viski",
+		),
+	},
+	{
+		id: crypto.randomUUID(),
+		name: "Vodkalar",
+		description: "Vodka çeşitleri ve kültürü",
+		href: "/posts/vodka",
+		children: formatTocItems(
+			vodkaPost?.tableOfContents?.items[0]?.items || [],
+			"/posts/vodka",
+			"vodka",
 		),
 	},
 	{
 		id: crypto.randomUUID(),
 		name: "Şaraplar",
-		description: "Şarap çeşitleri",
-		href: "/saraplar",
-		children: [
-			{
-				id: crypto.randomUUID(),
-				name: "Kırmızı şaraplar",
-				description: "Kırmızı şaraplar",
-				href: "/kirmizi-saraplar",
-			},
-			{
-				id: crypto.randomUUID(),
-				name: "Beyaz şaraplar",
-				description: "Beyaz şaraplar",
-				href: "/beyaz-saraplar",
-			},
-		],
-	},
-	{
-		id: crypto.randomUUID(),
-		name: "Şampanyalar",
-		description: "Şampanya çeşitleri",
-		href: "/sampanyalar",
-		children: [
-			{
-				id: crypto.randomUUID(),
-				name: "Türk şampanyaları",
-				description: "Türk şampanyaları",
-				href: "/turk-sampanyalari",
-			},
-			{
-				id: crypto.randomUUID(),
-				name: "Yabancı şampanyalar",
-				description: "Yabancı şampanyalar",
-				href: "/yabanci-sampanyalar",
-			},
-		],
-	},
-	{
-		id: crypto.randomUUID(),
-		name: "Konyaklar",
-		description: "Konyak çeşitleri",
-		href: "/konyaklar",
-		children: [
-			{
-				id: crypto.randomUUID(),
-				name: "Türk konyakları",
-				description: "Türk konyakları",
-				href: "/turk-konyaklari",
-			},
-			{
-				id: crypto.randomUUID(),
-				name: "Yabancı konyaklar",
-				description: "Yabancı konyaklar",
-				href: "/yabanci-konyaklar",
-			},
-		],
+		description: "Şarap tarihi, üretimi ve tadımı",
+		href: "/posts/wine",
+		children: formatTocItems(
+			sarapPost?.tableOfContents?.items[0]?.items || [],
+			"/posts/wine",
+			"sarap",
+		),
 	},
 ] satisfies Menu[];
 

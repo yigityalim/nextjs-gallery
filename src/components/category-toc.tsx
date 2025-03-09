@@ -10,24 +10,22 @@ import {
 import type { Post } from "contentlayer/generated";
 import { BookOpen } from "lucide-react";
 import * as React from "react";
-import { create } from "zustand";
-
-export const useCategoryToc = create<{
-	value: string | undefined;
-	setValue: (value: string | undefined) => void;
-}>()((set) => ({
-	value: undefined,
-	setValue: (value) => set({ value }),
-}));
 
 export function CategoryToc({
 	category,
 }: Readonly<{
 	category: Post;
 }>) {
+	const [isOpen, setIsOpen] = React.useState<string | undefined>(undefined);
+
 	return (
-		<div className="sticky top-(--header-height) z-50 flex items-center justify-center bg-nav-color">
-			<Accordion type="single" collapsible>
+		<div className="fixed top-(--header-height) w-full z-50 backdrop-blur-md dark:backdrop-blur-xl flex items-center justify-center bg-nav-color">
+			<Accordion
+				type="single"
+				collapsible
+				value={isOpen}
+				onValueChange={setIsOpen}
+			>
 				<AccordionItem value="item-1">
 					<AccordionTrigger className="px-4">
 						<div className="flex items-center">
@@ -36,7 +34,10 @@ export function CategoryToc({
 						</div>
 					</AccordionTrigger>
 					<AccordionContent className="px-4">
-						<TableOfContents toc={category.tableOfContents} />
+						<TableOfContents
+							onValueChange={setIsOpen}
+							toc={category.tableOfContents}
+						/>
 					</AccordionContent>
 				</AccordionItem>
 			</Accordion>

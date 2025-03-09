@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default async function Home() {
 	return (
-		<main className="container mx-auto py-10 px-4 flex flex-col gap-4">
+		<main className="container mx-auto pb-10 px-4 flex flex-col gap-4">
 			{allPosts.map((post) => (
 				<Link
 					href={`/category/${post.slugAsParams}`}
@@ -21,7 +21,7 @@ export default async function Home() {
 						/>
 					)}
 					<div className="mt-4">
-						<h2 className="h2 font-bold font-lora text-brand-600 dark:text-brand-300 italic mb-4">
+						<h2 className="h2 font-bold font-lora text-brand-600 dark:text-brand-500 italic mb-4">
 							{post.title}
 						</h2>
 						<p>{post.description}</p>

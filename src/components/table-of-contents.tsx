@@ -2,14 +2,16 @@
 
 import type { TableOfContents as TOC } from "@/lib/toc";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import * as React from "react";
 import { useCallback } from "react";
 
 interface TocProps {
 	toc: TOC;
+	onValueChange: (value: string | undefined) => void;
 }
 
-export function TableOfContents({ toc }: Readonly<TocProps>) {
+export function TableOfContents({ toc, onValueChange }: Readonly<TocProps>) {
 	const tocRef = React.useRef<HTMLDivElement>(null);
 	const itemIds = React.useMemo(
 		() =>
@@ -34,7 +36,11 @@ export function TableOfContents({ toc }: Readonly<TocProps>) {
 			ref={tocRef}
 			className="relative w-full max-h-[700px] overflow-y-auto pr-2 scrollbar-hidden"
 		>
-			<Tree tree={toc} activeItem={activeHeading} />
+			<Tree
+				tree={toc}
+				activeItem={activeHeading}
+				onValueChange={onValueChange}
+			/>
 		</div>
 	);
 }
@@ -94,26 +100,49 @@ interface TreeProps {
 	tree: TOC;
 	level?: number;
 	activeItem?: string | null;
+	onValueChange: (value: string | undefined) => void;
 }
 
-function Tree({ tree, level = 1, activeItem }: TreeProps) {
-	const scroll = useCallback<(id: string) => void>((id) => {
-		document.getElementById(id)?.scrollIntoView({
-			behavior: "smooth",
-			block: "start",
-		});
-	}, []);
+function Tree({ tree, level = 1, activeItem, onValueChange }: TreeProps) {
+	const scroll = useCallback<(id: string, url: string) => void>(
+		async (id, url) => {
+			const element = document.getElementById(id);
+			if (element) {
+				// Header yüksekliğini al
+				const header = document.querySelector(".header");
+				const headerHeight = header ? header.clientHeight : 100; // Eğer bulunamazsa varsayılan bir değer kullan
+
+				// Sayfanın kaydırma pozisyonunu hesapla
+				const rect = element.getBoundingClientRect();
+				const scrollTop =
+					window.pageYOffset || document.documentElement.scrollTop;
+				const absoluteTop = rect.top + scrollTop - headerHeight - 20; // 20px ekstra boşluk bırak
+
+				// Sayfayı yumuşak şekilde kaydır
+				window.scrollTo({
+					top: absoluteTop,
+					behavior: "smooth",
+				});
+
+				// URL'yi güncelle
+				window.history.pushState(null, "", url);
+
+				// Accordion'u kapat
+				onValueChange("");
+			}
+		},
+		[onValueChange],
+	);
 
 	return tree?.items?.length && level < 3 ? (
 		<ul className="mt-2 space-y-2">
 			{tree.items.map((item, index) => {
 				return (
 					<li key={`${index}-${item.url.split("#")[1]}`}>
-						<a
+						<Link
 							href={item.url}
 							onClick={async (e) => {
-								e.preventDefault();
-								scroll(item.url.split("#")[1]);
+								onValueChange("");
 							}}
 							className={cn(
 								"toc-link inline transition-colors duration-300 text-sm",
@@ -123,7 +152,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
 							)}
 						>
 							{item.title}
-						</a>
+						</Link>
 						{item.items?.length ? (
 							<ul
 								className={cn(
@@ -134,6 +163,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
 									tree={{ items: item.items }}
 									level={level + 1}
 									activeItem={activeItem}
+									onValueChange={onValueChange}
 								/>
 							</ul>
 						) : null}

@@ -33,8 +33,6 @@ export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 		closeAllMenus();
 	};
 
-	console.log(item);
-
 	return (
 		<DrawerNested
 			open={isOpen}
@@ -79,7 +77,12 @@ export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 						<Link
 							key={child.id}
 							href={child.href}
-							className="flex items-center justify-between gap-2 p-2.5 rounded-sm text-sm text-offgray-600 dark:text-offgray-200 hover:bg-offgray-100/50 dark:hover:bg-offgray-500/10 transition-colors duration-75"
+							className={cn(
+								"flex items-center justify-between gap-2 p-2.5 rounded-sm text-sm text-offgray-600 dark:text-offgray-200 hover:bg-offgray-100/50 dark:hover:bg-offgray-500/10 transition-colors duration-75",
+								window.location.hash === `#${child.href.split("#")[1]}`
+									? "bg-offgray-100/50 dark:bg-offgray-500/10"
+									: "",
+							)}
 							onClick={handleCloseMenus}
 						>
 							{child.name}

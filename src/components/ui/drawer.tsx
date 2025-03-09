@@ -11,15 +11,16 @@ const Drawer = ({
 	...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
 	<DrawerPrimitive.Root
-		shouldScaleBackground={shouldScaleBackground}
-		setBackgroundColorOnScale={false}
+		data-slot="drawer-root"
+		shouldScaleBackground
+		setBackgroundColorOnScale
 		{...props}
 	/>
 );
 
 const DrawerNested = (
 	props: React.ComponentProps<typeof DrawerPrimitive.NestedRoot>,
-) => <DrawerPrimitive.NestedRoot {...props} />;
+) => <DrawerPrimitive.NestedRoot data-slot="drawer-nested-root" {...props} />;
 
 const DrawerTrigger = DrawerPrimitive.Trigger;
 
@@ -33,6 +34,7 @@ const DrawerClose = ({
 	removeStyles?: boolean;
 }) => (
 	<DrawerPrimitive.Close
+		data-slot="drawer-close"
 		className={cn(removeStyles ? "" : buttonVariants(), className)}
 		{...props}
 	/>
@@ -73,7 +75,7 @@ function DrawerContent({
 			/>
 			<DrawerPrimitive.Content
 				className={cn(
-					"border-t-offgray-300 dark:border-t-offgray-950 fixed right-0 bottom-0 left-0 z-203 mt-24 flex flex-col rounded-t-[10px] border-t bg-white outline-none dark:bg-[hsl(218,_13%,_12%)]",
+					"border-t-offgray-300 dark:border-t-offgray-950 fixed right-0 bottom-0 left-0 z-203 mt-24 flex flex-col rounded-t-[10px] border-t bg-white outline-none dark:bg-offgray-950 [hsl(218,_13%,_12%)]",
 					className,
 					{
 						"right-0 bottom-0 left-0": direction === "bottom",
@@ -112,7 +114,7 @@ const DrawerFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
 	<div
 		className={cn(
-			"mt-auto flex flex-col gap-2 p-4 border-t grid-border-color",
+			"mt-auto flex flex-col gap-4 p-4 border-t border-brand-50 dark:border-brand-500/5",
 			className,
 		)}
 		{...props}

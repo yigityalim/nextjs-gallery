@@ -15,8 +15,6 @@ export default async function CategoryIdPage({
 		return <div>Category not found</div>;
 	}
 
-	console.log(category.tableOfContents);
-
 	return (
 		<div className="max-w-(--content-width) mx-auto">
 			<CategoryToc category={category} />
