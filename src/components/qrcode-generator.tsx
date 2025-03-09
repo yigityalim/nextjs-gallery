@@ -140,6 +140,7 @@ export function QrcodeGenerator() {
 							bgColor={"#ffffff"}
 							fgColor={"#000000"}
 						/>
+						<div className="animate-bg-slide [z-index:1] bg-[size:100px] bg-[url(/brand-logo.png)] select-none pointer-events-none absolute inset-0 opacity-5 dark:opacity-10  bg-repeat" />
 					</div>
 					<p className="text-sm text-gray-500 text-center my-4">
 						QR Kodu indirmek için "İndir" butonunu kullanın veya "Paylaş"
