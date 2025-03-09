@@ -269,100 +269,23 @@ export const components = {
 	),
 	Link,
 	img: ({ src, alt, ...props }: ImageProps) => {
-		const { resolvedTheme } = useTheme();
-		const [loadedVariants, setLoadedVariants] = React.useState<string[]>([]);
-		const [isLoading, setIsLoading] = React.useState(true);
-
-		if (typeof src !== "string") {
-			return (
-				<div className="w-full border default-border-color rounded-sm p-2.5 bg-white/60 dark:bg-offgray-800/8 sh-alt relative overflow-clip p-0! mb-4">
-					<figure>
-						<NextImage
-							{...props}
-							src={src || "/placeholder.svg"}
-							alt={alt || ""}
-						/>
-						<figcaption className="px-3 py-2.5 text-xs italic dark:text-gray-200 border-t border-borderAccent dark:bg-offgray-800/10 dark:border-offgray-300/20 text-offgray">
-							{alt}
-						</figcaption>
-					</figure>
-				</div>
-			);
-		}
-
-		const extension = src.split(".").pop();
-		const baseName = src.substring(0, src.lastIndexOf("."));
-
-		const variants = {
-			mobileDark: `${baseName}-dark.${extension}`,
-			mobileLight: `${baseName}-light.${extension}`,
-		};
-
-		// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-		React.useEffect(() => {
-			const checkImage = (url: string) => {
-				return new Promise((resolve) => {
-					const img = new Image();
-					img.onload = () => resolve(true);
-					img.onerror = () => resolve(false);
-					img.src = url;
-				});
-			};
-
-			const loadImages = async () => {
-				const results = await Promise.all(
-					Object.values(variants).map((variant) => checkImage(variant)),
-				);
-
-				setLoadedVariants(
-					Object.values(variants).filter((_, index) => results[index]),
-				);
-				setIsLoading(false);
-			};
-
-			loadImages();
-		}, [src]);
-
-		if (isLoading) {
-			return <div>Loading...</div>;
-		}
-
-		const getImageSrc = (isMobile: boolean, isDark: boolean) => {
-			const preferredVariant = isMobile
-				? isDark
-					? variants.mobileDark
-					: variants.mobileLight
-				: isDark
-					? variants.desktopDark
-					: variants.desktopLight;
-
-			return loadedVariants.includes(preferredVariant) ? preferredVariant : src; // Fallback to original src if preferred variant doesn't exist
-		};
-
 		return (
-			<div className="w-full rounded-sm p-2.5 relative overflow-clip p-0! mb-4">
+			<div className="w-full rounded-sm overflow-clip mb-4">
 				<NextImage
-					src={
-						getImageSrc(true, resolvedTheme === "dark") || "/placeholder.svg"
-					}
+					src={src || "/placeholder.svg"}
 					alt={alt || ""}
 					width={props.width ?? 800}
 					height={props.height ?? 450}
 					quality={100}
 					priority
-					className="block md:hidden"
+					className={props.className}
+					{...props}
 				/>
-				<NextImage
-					src={
-						getImageSrc(false, resolvedTheme === "dark") || "/placeholder.svg"
-					}
-					alt={alt || ""}
-					width={props.width ?? 800}
-					height={props.height ?? 450}
-					quality={100}
-					priority
-					className="hidden md:block"
-				/>
+				{alt && (
+					<figcaption className="px-3 py-2.5 text-xs italic dark:text-gray-200 border-t border-borderAccent dark:bg-offgray-800/10 dark:border-offgray-300/20 text-offgray">
+						{alt}
+					</figcaption>
+				)}
 			</div>
 		);
 	},

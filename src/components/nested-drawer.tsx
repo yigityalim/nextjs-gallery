@@ -65,7 +65,7 @@ export function NestedDrawer({ item }: Readonly<NestedDrawerProps>) {
 					</button>
 				</div>
 			</DrawerTrigger>
-			<DrawerContent z={204} className="max-h-[60%] overflow-y-auto">
+			<DrawerContent z={204} className="">
 				<DrawerHeader className={cn("border-0", item.name ? "" : "p-0")}>
 					<DrawerTitle className="text-lg font-bold text-offgray-600 dark:text-offgray-200">
 						{item.name}
