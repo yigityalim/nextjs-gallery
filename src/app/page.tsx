@@ -3,7 +3,6 @@ import { Link } from "next-view-transitions";
 import Image from "next/image";
 
 export default async function Home() {
-	console.log(process.env);
 	return (
 		<main className="container mx-auto pb-10 px-4 flex flex-col gap-4">
 			{allPosts.map((post) => (

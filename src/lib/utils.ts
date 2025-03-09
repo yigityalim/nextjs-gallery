@@ -10,6 +10,10 @@ export function sleep(ms: number) {
 }
 
 export function getBaseUrl() {
+	if (typeof window !== "undefined") {
+		return window.location.origin;
+	}
+
 	if (process.env.NODE_ENV === "development") {
 		return "http://localhost:3000";
 	}
@@ -18,5 +22,5 @@ export function getBaseUrl() {
 		return `https://${process.env.VERCEL_URL}`;
 	}
 
-	return "https://nextjs-gallery-neon.vercel.app/";
+	return "https://nextjs-gallery-neon.vercel.app";
 }
