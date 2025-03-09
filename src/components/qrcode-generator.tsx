@@ -132,9 +132,6 @@ export function QrcodeGenerator() {
 						data-qr-container
 						className="relative flex flex-col items-center justify-center bg-white rounded-lg aspect-square"
 					>
-						<span className="absolute top-0 inset-x-0 inline-flex items-center justify-center text-center p-2 bg-white rounded-t-lg">
-							{url}
-						</span>
 						<QRCodeSVG
 							value={url}
 							size={256}
