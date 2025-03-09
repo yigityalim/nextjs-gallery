@@ -19,7 +19,7 @@ export function CategoryToc({
 	const [isOpen, setIsOpen] = React.useState<string | undefined>(undefined);
 
 	return (
-		<div className="fixed top-(--header-height) w-full z-50 backdrop-blur-md dark:backdrop-blur-xl flex items-center justify-center bg-nav-color">
+		<div className="fixed top-(--header-height) inset-x-0 w-full mx-auto z-50 backdrop-blur-md dark:backdrop-blur-xl flex items-center justify-center bg-nav-color">
 			<Accordion
 				type="single"
 				collapsible

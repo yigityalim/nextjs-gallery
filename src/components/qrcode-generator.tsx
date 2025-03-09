@@ -27,9 +27,8 @@ export const useQRDrawerStore = create<QRDrawerStore>()((set) => ({
 export function QrcodeGenerator() {
 	const qrContainerRef = useRef<HTMLDivElement>(null);
 	const pathname = usePathname();
-	const params = useSearchParams();
 
-	const url = `${getBaseUrl()}${pathname}${params.toString()}`;
+	const url = `${getBaseUrl()}${pathname}`;
 
 	const handleDownloadDirect = () => {
 		const svgElement = qrContainerRef.current?.querySelector("svg");

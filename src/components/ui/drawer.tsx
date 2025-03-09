@@ -12,8 +12,8 @@ const Drawer = ({
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
 	<DrawerPrimitive.Root
 		data-slot="drawer-root"
-		shouldScaleBackground
-		setBackgroundColorOnScale
+		shouldScaleBackground={shouldScaleBackground}
+		setBackgroundColorOnScale={false}
 		{...props}
 	/>
 );

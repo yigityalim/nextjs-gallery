@@ -117,7 +117,11 @@ export function Modal({
 	}
 
 	return (
-		<Dialog {...props}>
+		<Dialog
+			{...props}
+			open={isOpen ?? undefined}
+			onOpenChange={setOpen ?? undefined}
+		>
 			<DialogTrigger asChild>{renderTrigger()}</DialogTrigger>
 			<DialogContent className={cn("overflow-hidden p-0", contentClassName)}>
 				{renderHeader()}

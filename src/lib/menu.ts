@@ -67,7 +67,7 @@ export const menu = [
 		id: crypto.randomUUID(),
 		name: "Vodkalar",
 		description: "Vodka çeşitleri ve kültürü",
-		href: "/posts/vodka",
+		href: "/category/vodka",
 		children: formatTocItems(
 			vodkaPost?.tableOfContents?.items[0]?.items || [],
 			"/category/vodka",

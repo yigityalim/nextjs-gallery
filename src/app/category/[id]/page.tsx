@@ -26,9 +26,7 @@ export default async function CategoryIdPage({
 		<div className="max-w-(--content-width) mx-auto">
 			<CategoryToc category={category} />
 			<div className="px-4 pt-4">
-				<Suspense fallback={<div>Loading...</div>}>
-					<QrcodeGenerator />
-				</Suspense>
+				<QrcodeGenerator />
 				<Mdx code={category.body.code} />
 			</div>
 		</div>
