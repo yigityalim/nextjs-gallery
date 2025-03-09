@@ -8,6 +8,7 @@ import { Providers } from "@/components/theme-provider";
 import { ScrollTopButton } from "@/components/top-button";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
+import { ViewTransitions } from "next-view-transitions";
 import type React from "react";
 
 const lora = Lora({
@@ -40,25 +41,27 @@ export default function RootLayout({
 	}>
 >) {
 	return (
-		<html lang="en" suppressHydrationWarning>
-			<ReactScan scan={false} />
-			<body
-				suppressHydrationWarning
-				className={cn(
-					"bg-cream-100/20 text-offgray dark:text-offgray-300 relative min-h-screen w-screen overflow-x-hidden dark:bg-[hsl(218,_13%,_8%)]",
-					lora.variable,
-				)}
-			>
-				<Providers>
-					<Header />
-					<div className="h-(--header-height)" />
-					{children}
-					{modal}
-					<Footer />
-					<ScrollTopButton />
-					<Toaster />
-				</Providers>
-			</body>
-		</html>
+		<ViewTransitions>
+			<html lang="en" suppressHydrationWarning>
+				<ReactScan scan={false} />
+				<body
+					suppressHydrationWarning
+					className={cn(
+						"bg-cream-100/20 text-offgray dark:text-offgray-300 relative min-h-screen w-screen overflow-x-hidden dark:bg-[hsl(218,_13%,_8%)]",
+						lora.variable,
+					)}
+				>
+					<Providers>
+						<Header />
+						<div className="h-(--header-height)" />
+						{children}
+						{modal}
+						<Footer />
+						<ScrollTopButton />
+						<Toaster />
+					</Providers>
+				</body>
+			</html>
+		</ViewTransitions>
 	);
 }

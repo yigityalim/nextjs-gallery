@@ -2,7 +2,7 @@
 
 import type { TableOfContents as TOC } from "@/lib/toc";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import * as React from "react";
 import { useCallback } from "react";
 

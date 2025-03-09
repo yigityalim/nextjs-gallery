@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { getProducts } from "@/supabase/queries/product";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 
 export async function GalleryGrid() {
 	const images = await getProducts();

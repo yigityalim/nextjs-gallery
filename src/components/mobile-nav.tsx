@@ -16,8 +16,8 @@ import { menu } from "@/lib/menu";
 import { useConfig } from "@/lib/state";
 import { X } from "lucide-react";
 import { motion } from "motion/react";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 
 export function MobileNav() {
 	const menuState = useConfig((state) => state.menuState);

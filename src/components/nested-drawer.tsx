@@ -14,7 +14,7 @@ import type { Menu } from "@/lib/menu";
 import { useConfig } from "@/lib/state";
 import { cn } from "@/lib/utils";
 import { ChevronRight, X } from "lucide-react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 

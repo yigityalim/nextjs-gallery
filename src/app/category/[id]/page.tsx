@@ -4,6 +4,12 @@ import { QrcodeGenerator } from "@/components/qrcode-generator";
 import { allPosts } from "contentlayer/generated";
 import * as React from "react";
 
+export function generateStaticParams() {
+	return allPosts.map((post) => ({
+		id: post.slugAsParams,
+	}));
+}
+
 export default async function CategoryIdPage({
 	params,
 }: Readonly<{ params: Promise<{ id: string }> }>) {

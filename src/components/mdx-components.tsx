@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import { Hash } from "lucide-react";
 import { useMDXComponent } from "next-contentlayer2/hooks";
 import { useTheme } from "next-themes";
+import { Link } from "next-view-transitions";
 import NextImage, { type ImageProps } from "next/image";
-import Link from "next/link";
 import React from "react";
 import slugify from "slugify";
 

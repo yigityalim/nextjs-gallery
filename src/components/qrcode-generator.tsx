@@ -2,16 +2,6 @@
 
 import { Modal } from "@/components/modal";
 import { Button } from "@/components/ui/button";
-import {
-	Drawer,
-	DrawerClose,
-	DrawerContent,
-	DrawerDescription,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerTitle,
-	DrawerTrigger,
-} from "@/components/ui/drawer";
 import { getBaseUrl } from "@/lib/utils";
 import { Download, Share } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";

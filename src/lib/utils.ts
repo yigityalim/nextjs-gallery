@@ -18,9 +18,5 @@ export function getBaseUrl() {
 		return `https://${process.env.VERCEL_URL}`;
 	}
 
-	if (process.env.NEXT_PUBLIC_SITE_URL) {
-		return process.env.NEXT_PUBLIC_SITE_URL;
-	}
-
 	throw new Error("Base URL could not be determined");
 }

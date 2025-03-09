@@ -1,6 +1,6 @@
 import { MobileNav } from "@/components/mobile-nav";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 
 export function Header() {
 	return (
